@@ -1,6 +1,11 @@
 name: Build/release
 
-on: push
+on:
+    # Trigger the workflow on push or pull request,
+    # but only for the master branch
+  push:
+    branches:
+      - master
 
 jobs:
   release:
@@ -12,7 +17,10 @@ jobs:
 
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@master
+        with:
+            repository: automatemytest/amt-uiv3
+            token: ${{ secrets.my_pat }}
 
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v1
@@ -29,4 +37,4 @@ jobs:
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
           build_script_name: build:prod
-          release: ${{ startsWith(github.ref, 'refs/tags/v') }}
+          release: ${{ startsWith(github.ref, 'refs/tags/v7.2.2') }}
