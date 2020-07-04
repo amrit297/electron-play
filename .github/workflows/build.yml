@@ -22,12 +22,14 @@ jobs:
             repository: automatemytest/amt-uiv3
             token: ${{ secrets.my_pat }}
 
+
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v1
         with:
           node-version: 12
 
       - name: Build/release Electron app
+        working-directory: ./amt-webapp
         uses: samuelmeuli/action-electron-builder@v1
         with:
           # GitHub token, automatically provided to the action
