@@ -22,7 +22,6 @@ jobs:
             repository: automatemytest/amt-uiv3
             token: ${{ secrets.my_pat }}
 
-
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v1
         with:
